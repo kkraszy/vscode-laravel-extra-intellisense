@@ -80,7 +80,8 @@ export default class ValidationProvider implements vscode.CompletionItemProvider
         if (
             (func && func.paramIndex !== null && func.function && Helpers.tags.validation.functions.some((fn:string) => func.function.includes(fn))) ||
             (func && func.paramIndex !== null && func.class && Helpers.tags.validation.classes.some((cls:string) => func.class.includes(cls))) ||
-            (document.getText().match(/class .* extends FormRequest/g) && document.getText().match(/use Illuminate\\Foundation\\Http\\FormRequest;/g))
+            (document.getText().match(/class .* extends FormRequest/g) && document.getText().match(/use Illuminate\\Foundation\\Http\\FormRequest;/g)) ||
+            (document.getText().match(/class .* extends APIRequest/g) && document.getText().match(/use Modules\Checkout\Http\Requests\APIRequest;/g))
             ) {
             var rules = this.rules;
             Object.assign(rules, vscode.workspace.getConfiguration("LaravelExtraIntellisense.customValidationRules"));
